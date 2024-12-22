@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Supprimer l'Auteur{% endblock %}
+
+{% block content %}
+<h1>Supprimer l'Auteur</h1>
+<p>Êtes-vous sûr de vouloir supprimer l'auteur <strong>{{ auteur.nom }}</strong> ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+    <a href="{% url 'liste_auteurs' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

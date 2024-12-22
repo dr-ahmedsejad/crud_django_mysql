@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Créer un Article{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Créer un Article</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <table class="table table-borderless">
+                            <tbody>
+                                <!-- Section Informations de l'Article -->
+                                <tr>
+                                    <th class="w-25"><label for="id_titre" class="form-label">Titre</label></th>
+                                    <td>{{ article_form.titre }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="id_categorie" class="form-label">Catégorie</label></th>
+                                    <td>{{ article_form.categorie }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="id_contenu" class="form-label">Contenu</label></th>
+                                    <td>{{ article_form.contenu }}</td>
+                                </tr>
+
+                                <!-- Section Auteur -->
+                                <tr>
+                                    <th><label for="id_auteur" class="form-label">Auteur</label></th>
+                                    <td>{{ article_form.auteur }}</td>
+                                </tr>
+
+                                <!-- Section Images -->
+                                <tr>
+                                    <th><label for="id_images" class="form-label">Ajouter des Images</label></th>
+                                    <td>
+                                        <input type="file" name="images" id="id_images" multiple class="form-control">
+                                        <small class="form-text text-muted">Vous pouvez télécharger plusieurs images à la fois.</small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Boutons -->
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-success me-2">
+                                <i class="bi bi-check-circle"></i> Enregistrer
+                            </button>
+                            <a href="{% url 'liste_articles' %}" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Annuler
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

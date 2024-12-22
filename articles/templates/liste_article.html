@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des Articles{% endblock %}
+
+{% block content %}
+<h1>Liste des Articles</h1>
+<a href="{% url 'creer_article' %}" class="btn btn-primary mb-3">Créer un article</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th>Images</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+            <td>{{ article.titre }}</td>
+            <td>{{ article.auteur.nom }}</td>
+            <td>{{ article.categorie.nom }}</td>
+            <td>
+                {% for image in article.images.all %}
+                    <img src="{{ image.image.url }}" alt="Image" style="width: 50px; height: 50px;">
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{% url 'modifier_article' article.id %}" class="btn btn-sm btn-warning">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a href="{% url 'supprimer_article' article.id %}" class="btn btn-sm btn-danger">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

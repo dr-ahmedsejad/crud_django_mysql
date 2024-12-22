@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% block title %}Liste des Auteurs{% endblock %}
+
+{% block content %}
+<h1>Liste des Auteurs</h1>
+<a href="{% url 'creer_auteur' %}" class="btn btn-primary mb-3"> Créer un auteur</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for auteur in auteurs %}
+        <tr>
+            <td>{{ auteur.id }}</td>
+            <td>{{ auteur.nom }}</td>
+            <td>{{ auteur.email }}</td>
+            <td>
+                <a href="{% url 'modifier_auteur' auteur.id %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                <a href="{% url 'supprimer_auteur' auteur.id %}" class="btn btn-danger btn-sm"> <i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
